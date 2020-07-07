@@ -3,7 +3,7 @@ simulating the probabiliy to pick clones and unique genotypes in phytoplankton p
 
 You can run this simulation in python with the following commands:
 
-> from PopDynamic_Function import function
+> from GenRiS import function
 
 > function(numgenos = v, days = w, growthrate = x, sd = y, samplesize = z)
 
@@ -13,11 +13,11 @@ Only two variables with ranges of values are allowed per run!
 
 Examples:
 
-> from PopDynamic_Function import function
+> from GenRiS import function
 
 > function(numgenos = [200, 400, 600, 800, 1000, 1500, 2000, 3000], days = 60, growthrate = 1.2, sd = 0.025, samplesize = [50, 100, 150, 200, 300, 400, 500, 1000])
 
 
-> from PopDynamic_Function import function
+> from GenRiS import function
 
 > function(numgenos = 2000, days = 60, growthrate = 1.2, sd = [0.021, 0.023, 0.025, 0.027, 0.029], samplesize = [50, 100, 150, 200, 300, 400, 500, 1000])
