@@ -46,6 +46,7 @@ def function(numgenos, days, growthrate, sd, samplesize):
     import pandas as pd
     import seaborn as sns
     
+    growthrate = growthrate + 1
     startamount = 1 # initial occurrence of all genotypes
     meanprobs3 = [] # set up final probability matrix
 
