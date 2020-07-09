@@ -1,7 +1,14 @@
 # PickingClones
-simulating the probabiliy to pick clones and unique genotypes in phytoplankton populations
+Simulating the probabiliy of picking clones and unique genotypes in phytoplankton populations
 
 You can run this simulation in python with the following commands:
+
+> import os
+
+> os.getcwd() # check your current working directory
+
+> os.chdir('path/to/folder/with/GenRiS.py') # set working directory where the GenRiS.py file is located and where the output files will be generated
+
 
 > from GenRiS import function
 
