@@ -15,7 +15,7 @@ You can run this simulation in python with the following commands:
 > function(numgenos = v, days = w, growthrate = x, sd = y, samplesize = z)
 
 The GenRiS.py file needs to be stored in the same folder, where you want to create your output files.
-The simulation perumatates through a range of different population sizes (number of genotypes = numgenos), samplesizes (number of cells that will be picked) and standard deviations of the normally distributed growth rate function (sd). Larger sd will result in larger differences between growth rates of individual genotypes. Ranges have to be expressed as lists (e.g. numgenos = [200, 400, 600, 800, 1000, 1500, 2000, 3000]), while discrete values can be filled in directly.
+The simulation perumtates through a range of different population sizes (number of genotypes = numgenos), samplesizes (number of cells that will be picked) and standard deviations of the normally distributed growth rate function (sd). Larger sd will result in larger differences between growth rates of individual genotypes. Ranges have to be expressed as lists (e.g. numgenos = [200, 400, 600, 800, 1000, 1500, 2000, 3000]), while discrete values can be filled in directly.
 Only two variables with ranges of values are allowed per run! 
 The growth rate has to be expressed in divisions per day and the variable "day" refers to time period of interest, in which the algal population grows exponentially.
 
