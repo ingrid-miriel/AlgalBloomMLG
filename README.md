@@ -1,5 +1,5 @@
-# PickingClones
-Simulating the probabiliy of picking clones and unique genotypes in phytoplankton populations
+# GenRis
+Simulating the probabiliy of picking clones and unique genotypes in phytoplankton populations to estimate Genotype Richness.
 
 You can run this simulation in python with the following commands:
 
@@ -10,9 +10,9 @@ You can run this simulation in python with the following commands:
 > os.chdir('path/to/folder/with/GenRiS.py') # set working directory where the GenRiS.py file is located and where the output files will be generated
 
 
-> from GenRiS import function
+> from GenRiS import genris
 
-> function(numgenos = v, days = w, growthrate = x, sd = y, samplesize = z)
+> genris(numgenos = v, days = w, growthrate = x, sd = y, samplesize = z)
 
 
 Alternatively, if you want to run the script from a terminal, you can use:
@@ -26,11 +26,11 @@ The growth rate has to be expressed in divisions per day. Each genotype will ini
 
 Examples:
 
-> from GenRiS import function
+> from GenRiS import genris
 
-> function(numgenos = [200, 400, 600, 800, 1000, 1500, 2000, 3000], days = 60, growthrate = 0.2, sd = 0.025, samplesize = [50, 100, 150, 200, 300, 400, 500, 1000])
+> genris(numgenos = [200, 400, 600, 800, 1000, 1500, 2000, 3000], days = 60, growthrate = 0.2, sd = 0.025, samplesize = [50, 100, 150, 200, 300, 400, 500, 1000])
 
 
-> from GenRiS import function
+> from GenRiS import genris
 
-> function(numgenos = 2000, days = 60, growthrate = 0.2, sd = [0.021, 0.023, 0.025, 0.027, 0.029], samplesize = [50, 100, 150, 200, 300, 400, 500, 1000])
+> genris(numgenos = 2000, days = 60, growthrate = 0.2, sd = [0.021, 0.023, 0.025, 0.027, 0.029], samplesize = [50, 100, 150, 200, 300, 400, 500, 1000])
