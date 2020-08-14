@@ -55,7 +55,9 @@ You can run this simulation in python with the following commands:
 > CurveFitting.curve_fitting(numgenos = x, prop_clones = y)
 
 The GenRiS.py file needs to be stored in the same folder where the "Probs_for_Sample.csv" file from the GenRis simulation is saved and where you want to create your output files.
-The range of population sizes (numgenos) has to be identical with numgenos in the GenRis simulation that created the "Probs_for_Sample.csv" output file. This script will create a plot of the curves fitting the mean probabilities and σ. It will also provide the R^2 value for the fit of the mean curve, the average number of expected genotypes in your sample, and the lower and upper confidence intervals (σ) to this estimate.
+The range of population sizes (numgenos) has to be identical with numgenos in the GenRis simulation that created the "Probs_for_Sample.csv" output file. The observed proportion of clones in your sample (number of clones / number of isolates) has to be indicated as prop_clones.
+
+This script will create a plot of the curves fitting the mean probabilities and σ. It will also provide the R^2 value for the fit of the mean curve, the average number of expected genotypes in your sample, and the lower and upper confidence intervals (σ) to this estimate.
 
 
 Example:
