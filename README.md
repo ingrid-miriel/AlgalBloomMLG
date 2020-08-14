@@ -38,6 +38,8 @@ Examples:
 
 > genris(numgenos = 2000, days = 60, growthrate = 0.2, sd = [0.021, 0.023, 0.025, 0.027, 0.029], samplesize = [50, 100, 150, 200, 300, 400, 500])
 
+# 
+
 
 
 
