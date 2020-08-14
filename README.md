@@ -24,11 +24,13 @@ The simulation permutates through a range of different population sizes (number 
 Only two variables with ranges of values are allowed per run! 
 The growth rate has to be expressed in divisions per day. Each genotype will initially be represented by one cell reflecting a population at the very beginning of the growth season. The variable "days" refers to the time period of interest, in which the algal population grows exponentially.
 
+If you're interested in estimating the genotype richness for a specific observed proportion of clones, you have to add the size of your sample (in which you counted the clones) to the end of the variable list (e.g. sample = 100). The variable list for this run has to contain ranges of numgenos and samplesize, which includes the size of your actual sample! This will create an output called "Probs_for_Sample.csv" containing the probability of picking clones in a sample with your specified size for the selected numbers of genotypes (numgenos) from 500 repeated picking events. This table will be the input for python script "CurveFitting".
+
 Examples:
 
 > from GenRiS import genris
 
-> genris(numgenos = [200, 400, 600, 800, 1000, 1500, 2000, 3000], days = 60, growthrate = 0.2, sd = 0.025, samplesize = [50, 100, 150, 200, 300, 400, 500, 1000])
+> genris(numgenos = [200, 400, 600, 800, 1000, 1500, 2000, 3000], days = 60, growthrate = 0.2, sd = 0.025, samplesize = [50, 100, 150, 200, 300, 400, 500, 1000], sample = 150)
 
 
 > from GenRiS import genris
