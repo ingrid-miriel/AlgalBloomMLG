@@ -6,21 +6,17 @@ Created on Fri Aug  7 14:19:49 2020
 @author: ingrid
 """
 
-import os
-os.getcwd()
-os.chdir('/home/ingrid/ncloud/Uppsala/PopDynamics_SaltPond')
-
-def curve_fitting(numgenos, prop_clones):
+def curve_fitting(input, prop_clones):
 
     import pandas as pd
     import numpy as np
 
-    
-    data = pd.read_csv('Probs_for_Sample.csv', index_col=0)
+    data = pd.read_csv(input, index_col=0)
+    numgenos = pd.to_numeric(list(data.columns))
     fitting = pd.DataFrame(numgenos)
-    mean = np.mean(data, axis = 1)
+    mean = np.mean(data, axis = 0)
     fitting['mean'] = mean.values
-    perc = np.percentile(data.T, [16, 84], axis = 0) # 68% conf. interval = standard deviation
+    perc = np.percentile(data.T, [16, 84], axis = 1) # 68% conf. interval = standard deviation
     perc = perc.T
     perc = pd.DataFrame(perc)
     fitting = pd.merge(fitting, perc, right_index=True, left_index=True)
@@ -48,11 +44,9 @@ def curve_fitting(numgenos, prop_clones):
     import matplotlib as mpl
     import matplotlib.pyplot as plt
     mpl.rcParams.update(mpl.rcParamsDefault)
+    fitting = pd.DataFrame(np.sort(fitting.values, axis=0), index=fitting.index, columns=fitting.columns)
     
     fig, ax = plt.subplots()
-    #ax.scatter(fitting['mean'], fitting['numgenos'])
-    #ax.scatter(fitting['lower_conf'], fitting['numgenos'], color='black', s=4)
-    #ax.scatter(fitting['upper_conf'], fitting['numgenos'], color='black', s=4)
     ax.plot(fitting['mean'], power_law(fitting['mean'], *pars1), linewidth=2, color='black')
     ax.plot(fitting['lower_conf'], power_law(fitting['lower_conf'], *pars2), linestyle='--', linewidth=1, color='black')
     ax.plot(fitting['upper_conf'], power_law(fitting['upper_conf'], *pars3), linestyle='--', linewidth=1, color='black')
@@ -66,17 +60,17 @@ def curve_fitting(numgenos, prop_clones):
     ydata=fitting['numgenos']
     popt, pcov = curve_fit(f, xdata, ydata)
     residuals = ydata-f(xdata, *popt)
-    ss_res = np.sum(residuals**2)
+    ss_res = np.sum(residuals**2) 
     ss_tot = np.sum((ydata-np.mean(ydata))**2)
     r_squared = 1 - (ss_res / ss_tot)
     print('R^2 of the curve fitted through the means is', r_squared,'.')
-    #r_squared # --> 0.99
+
     
     
     # use function to calculate genotype number for specific clone picking probability
-    est_mean = power_law(prop_clones, *pars1) # 2477.029 genotypes in 2006
-    est_low_conf = power_law(prop_clones, *pars2) # lower confidence interval -> 1517.152
-    est_high_conf = power_law(prop_clones, *pars3) # higher confidence interval -> 4357.754
+    est_mean = power_law(prop_clones, *pars1)
+    est_low_conf = power_law(prop_clones, *pars2) 
+    est_high_conf = power_law(prop_clones, *pars3) 
     print('With a proportion of', prop_clones, 'clones, you can expect around', est_mean, '(',est_low_conf, '< σ <', est_high_conf,') distinct genotypes in your sample.')
 
 if __name__ == "__main__":
