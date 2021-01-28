@@ -5,10 +5,10 @@ Created on Thu Jul  2 10:27:03 2020
 
 @author: ingrid
 """
-def genris(numgenos, days, growthrate, sd, samplesize, mincell, maxcell, **kwargs):
+def genris(numgenos, days, growthrate, sd, samplesize, mincell, maxcell, **kwargs): 
     import numpy as np
     if np.size(days) != 1 or np.size(growthrate) != 1:
-        raise ValueError('Days and/or growthrate have to be defined each by exactly one value!')
+        raise ValueError('Days and/or growthrate have each to be defined by exactly one value!')
     # define variables
     elif np.size(numgenos) > 1 and np.size(samplesize) > 1 and np.size(sd) == 1:
         numgenos = np.array(numgenos)
@@ -41,9 +41,9 @@ def genris(numgenos, days, growthrate, sd, samplesize, mincell, maxcell, **kwarg
         y_title = "number of genotypes"
         z = "NumgenosSDgrowth"
     else:
-        raise ValueError('Two variables (numgenos, sd or samplesize) need to be defined by a range of values! No more variables and no less!')
+        raise ValueError('Exactly two variables (numgenos, sd or samplesize) need to be defined by a range of values!')
     if np.size(sd) > 1 and 'sample' in kwargs:
-        raise ValueError('The estimation of genotype richness for a specific sample size requires ranges of number of genotypes and samplesizes!')
+        raise ValueError('The estimation of genotype richness for a specific sample size requires ranges of number of genotypes (numgenos) and samplesizes!')
 
     import numpy as np
     import matplotlib.pyplot as plt
@@ -108,7 +108,7 @@ def genris(numgenos, days, growthrate, sd, samplesize, mincell, maxcell, **kwarg
         # transform into numpy array
         out = pd.DataFrame(np.array(meanprobs3).reshape(len(y), len(x)))
         array[:, :, i] = out # fill 3D array
-        print(i)
+        print((i+1)*10,'%')
     if 'sample' in kwargs:
         sampleprobs2.to_csv('Probs_for_Sample.csv')
     df = np.mean(array, axis=2) # calculate means of 100 repetions
@@ -122,7 +122,7 @@ def genris(numgenos, days, growthrate, sd, samplesize, mincell, maxcell, **kwarg
     #plot as heatmap
     sns.set(font_scale=0.6)
     fig, ax = plt.subplots()
-    ax = sns.heatmap(df_percent, annot=True, fmt="d", linewidth=.2)
+    ax = sns.heatmap(df_percent, annot=True, fmt="d", linewidth=.2, cbar_kws={'label': 'probability of picking clones (%)'})
     ax.set_yticklabels(ax.get_yticklabels(), rotation=0)
     ax.set(xlabel = x_title, ylabel = y_title)
     fig.savefig(z+"_Heatmap.pdf")
