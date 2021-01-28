@@ -50,7 +50,7 @@ def curve_fitting(input, prop_clones):
     ax.plot(fitting['mean'], power_law(fitting['mean'], *pars1), linewidth=2, color='black')
     ax.plot(fitting['lower_conf'], power_law(fitting['lower_conf'], *pars2), linestyle='--', linewidth=1, color='black')
     ax.plot(fitting['upper_conf'], power_law(fitting['upper_conf'], *pars3), linestyle='--', linewidth=1, color='black')
-    ax.set(xlabel = "probability to pick clones", ylabel = "number of genotypes")
+    ax.set(xlabel = "probability of picking clones", ylabel = "number of genotypes")
     fig.savefig("FittedCurve_ProbNumgenos.pdf")
     
     
