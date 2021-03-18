@@ -10,8 +10,10 @@ def curve_fitting(input, prop_clones):
 
     import pandas as pd
     import numpy as np
-
+    
     data = pd.read_csv(input, index_col=0)
+    if data.shape[0] < 1000:
+        raise ValueError('The CurveFitting script has to be run on the Probs_for_Sample.csv file, which you get after specifying a sample size of interest using the sample = x option in the GenRis script.')
     numgenos = pd.to_numeric(list(data.columns))
     fitting = pd.DataFrame(numgenos)
     mean = np.mean(data, axis = 0)
