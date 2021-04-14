@@ -52,8 +52,11 @@ def genris(numgenos, days, growthrate, sd, samplesize, mincell, maxcell, **kwarg
     import seaborn as sns
     
     if 'sample' in kwargs:
-        [[num]] = np.where(samplesize == kwargs['sample'])
-        sampleprobs2 = pd.DataFrame(columns = numgenos)
+        if kwargs['sample'] not in samplesize:
+            raise ValueError('The value of "sample" needs to be included in the range of sample sizes!')
+        else:
+            [[num]] = np.where(samplesize == kwargs['sample'])
+            sampleprobs2 = pd.DataFrame(columns = numgenos)
 
     for i in range(0, 10):
         sampleprobs = np.zeros((100, len(numgenos)))
