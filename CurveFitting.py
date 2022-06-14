@@ -6,7 +6,7 @@ Created on Fri Aug  7 14:19:49 2020
 @author: ingrid
 """
 
-def curve_fitting(input, prop_clones):
+def curve_fitting(input, prop_iMLG):
 
     import pandas as pd
     import numpy as np
@@ -58,7 +58,7 @@ def curve_fitting(input, prop_clones):
         plt.axvline(x=0, linestyle='--', linewidth=1, color='black')
     if len(upPerc.index) > 2:
         ax.plot(upPerc['up_perc'], power_law(upPerc['up_perc'], *pars3), linestyle='--', linewidth=1, color='black')     
-    ax.set(xlabel = "probability of picking clones", ylabel = "number of genotypes")
+    ax.set(xlabel = "probability of picking identical MLGs", ylabel = "number of genotypes")
     fig.savefig("FittedCurve_ProbNumgenos.pdf")
     
     
@@ -75,18 +75,18 @@ def curve_fitting(input, prop_clones):
     
         
     # use function to calculate genotype number for specific clone picking probability
-    est_mean = round(power_law(prop_clones, *pars1), 2)
+    est_mean = round(power_law(prop_iMLG, *pars1), 2)
     if len(lowPerc.index) > 2:
-        est_low_perc = round(power_law(prop_clones, *pars2), 2)
+        est_low_perc = round(power_law(prop_iMLG, *pars2), 2)
     else:
         est_low_perc = 0
     if len(upPerc.index) > 2:
-        est_high_perc = round(power_law(prop_clones, *pars3), 2)
+        est_high_perc = round(power_law(prop_iMLG, *pars3), 2)
     else:
         est_high_perc = "unknown"
-    print('With a proportion of', prop_clones, 'clones, you can expect around', est_mean, '(',est_low_perc, '< σ <', est_high_perc,') distinct genotypes in your sample.')
+    print('With a proportion of', prop_iMLG, 'identical MLGs, you can expect around', est_mean, '(',est_low_perc, '< σ <', est_high_perc,') distinct genotypes in your sample.')
     if len(lowPerc.index) < 3 or len(upPerc.index) < 3:
-        print('The probability of picking clones across the chosen number of genotypes is generally too close to 0 to accurately estimate lower and/or upper percentiles.')
+        print('The probability of picking identical MLGs across the chosen number of genotypes is generally too close to 0 to accurately estimate lower and/or upper percentiles.')
 
 if __name__ == "__main__":
     curve_fitting()
